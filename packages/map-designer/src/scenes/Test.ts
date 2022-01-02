@@ -7,23 +7,19 @@ export class TestScene extends Phaser.Scene {
     });
   }
 
+  preload(): void{
+    this.load.image('tower_fire', 'assets/tower_fire.png');
+    this.load.image('tower_brick', 'assets/tower_brick.png');
+  }
+
   create(): void {
-    const graphics = this.add.graphics({
-      lineStyle: { width: 2, color: 0xaaaa00 },
-    });
-    const triangle = Phaser.Geom.Triangle.BuildEquilateral(400, 25, 300);
-    const points = Phaser.Geom.Triangle.Decompose(triangle);
-    let angle = 0;
-    while (angle < Math.PI * 2) {
-      Phaser.Geom.Triangle.Offset(
-        triangle,
-        Math.cos(angle) * 15,
-        Math.sin(angle) * 15,
-      );
-      Phaser.Geom.Triangle.Rotate(triangle, Math.PI / 20);
-      Phaser.Geom.Triangle.Decompose(triangle, points);
-      angle += Math.PI / 20;
-    }
-    graphics.strokePoints(points);
+    const boxTower = this.add.rectangle(150, 100, 240, 148);
+    boxTower.setStrokeStyle(2, 0x1a65ac)
+
+    this.add.image(200, 100, 'tower_brick').setScale(0.5);
+    this.add.image(100, 100, 'tower_fire').setScale(0.5);
+
+    const boxMap = this.add.rectangle(900, 500, 640, 640);
+    boxMap.setStrokeStyle(2, 0x1a65ac)
   }
 }
