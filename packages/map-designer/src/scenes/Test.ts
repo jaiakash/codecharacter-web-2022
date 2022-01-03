@@ -15,12 +15,13 @@ export class TestScene extends Phaser.Scene {
   }
 
   create(): void {
-    const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 3;
+    const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 3;
     this.gridContainer = this.add.container(screenCenterX,screenCenterY);
 
     // Draw a 5 by 8 grid of 75 width hexagons at 5,5 - They will be placed in the gridContainer so will be at 80,80
     this.drawHexGrid(8,8,55,5,5);
+    this.gridContainer.angle += 60;
 
 }
 
